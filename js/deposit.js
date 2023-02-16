@@ -1,14 +1,15 @@
-function getInputValueById(inputId){
-    const inputField = document.getElementById(inputId);
-    const inputFieldValue = parseFloat(inputField.value);
-    return inputFieldValue;
-}
-
-function getElementValueById(elementId){
-    const element = document.getElementById(elementId);
-    const value = parseFloat(element.innerText);
-}
-
 document.getElementById('btn-deposit').addEventListener('click', function(){
     const newDepositAmount = getInputValueById('deposit-field');
+    const previousDepositTotal = getElementValueById('deposit-total');
+
+    const newDepositTotal = newDepositAmount + previousDepositTotal;
+
+    // set deposit total value
+    setTextElementValueById('deposit-total', newDepositTotal);
+
+    // get previous balance by using function
+    const previousBalanceTotal = getElementValueById('balance-total');
+    const newBalanceTotal = previousBalanceTotal + newDepositAmount;
+    setTextElementValueById('balance-total', newBalanceTotal);
+    
 })
